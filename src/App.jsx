@@ -1,32 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 import { v4 } from "uuid";
 
 function App() {
-  const [tasks, setTasks] = useState(
-    JSON.parse(localStorage.getItem("tasks")) || []
-  );
+  const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
-  useEffect(() => {
-    async function fetchTasks() {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/todos?_limit=5",
-      { 
-        method: "GET" 
-      }
-    );
-      const data = await response.json();
-      
-      setTasks(data);
-    }
-    fetchTasks();
-  }, []
-  );
 
   function onAddTaskSubmit(title, description) {
     const newTask = {
