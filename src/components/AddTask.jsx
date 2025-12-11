@@ -22,12 +22,13 @@ function AddTask({onAddTaskSubmit}) {
       />
 
       <button 
-        className="bg-slate-500 text-white px-4 py-2 rounded-md font-medium"
+        className="bg-slate-500 text-white px-4 py-2 rounded-md font-medium disabled:bg-slate-400 disabled:cursor-not-allowed"
         onClick={() => {
           onAddTaskSubmit(title, description);
           setTitle("");
           setDescription("");
-        }}>
+        }}
+        disabled={title.trim() === ""}>
         Add Task 
       </button>
     </div>
